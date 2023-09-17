@@ -1,25 +1,26 @@
+import { Mobile, PC } from "./MediaQuery/MediaQuery";
 import { GlobalStyle } from "./components/styles/Globalstyle";
+import { GlobalStylePC } from "./components/styles/GlobalstylePC";
+import { LayoutMobile, LayoutPC } from "./pages/Layout/Layout";
 import Routers from "./routes/Routers";
-import { RecoilRoot, useRecoilState } from "recoil";
-import Modal from "./components/Modal/Modal/Modal";
-import { modalState } from "./atoms/modalAtom";
-
-// const Container = styled.div`
-//   max-width: 390px;
-//   min-height: 100vh;
-//   margin: 0 auto;
-//   background-color: #fff;
-// `;
 
 function App() {
-  // const [modal, setModal] = useRecoilState(modalState);
   return (
     <>
-      {/* <Container> */}
-      <GlobalStyle />
-      <Routers />
-      {/* {modal.show && <Modal type={modal.type} />} */}
-      {/* </Container> */}
+      <>
+        <Mobile>
+          <GlobalStyle />
+          <LayoutMobile />
+          <Routers />
+        </Mobile>
+      </>
+      <>
+        <PC>
+          <GlobalStylePC />
+          <LayoutPC />
+          <Routers />
+        </PC>
+      </>
     </>
   );
 }

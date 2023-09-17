@@ -13,6 +13,18 @@ import {
   CloseImgBtn,
 } from "../../components/Post/ImgPrev/PostImgPrevStyle";
 import sprite from "../../assets/images/SpriteIcon.svg";
+const Main = styled.main`
+  @media (min-width: 768px) {
+    margin-left: auto;
+    width: calc(100vw - var(--nav-medium-width));
+    display: flex;
+  }
+  @media (min-width: 1024px) {
+    margin-left: auto;
+    width: calc(100vw - var(--nav-wide-width));
+    display: flex;
+  }
+`;
 const StyledContainer = styled.section`
   width: 100%;
   height: calc(100vh - 48px);
@@ -254,54 +266,51 @@ export default function MakePost() {
   return (
     <>
       <h1 className="a11y-hidden">게시물 작성 페이지</h1>
-      <Header
-        type="upload"
-        handleUploadBtn={isValid}
-        uploadHandler={handleUpload}
-      />
-      <StyledContainer>
-        <UploadContainer>
-          <UploadImgWrapper htmlFor="file-input">
-            <UploadImgInput
-              type="file"
-              id="file-input"
-              accept="image/jpeg,image/jpg,image/png,image/gif"
-              multiple
-              onChange={handleUploadImg}
-              ref={fileInputRef}
-            />
-            <SocialSVG id="camera-btn" />
-          </UploadImgWrapper>
-          {uploadPreview?.map((preview, index) => (
-            <UploadImgDiv key={index}>
-              <CloseImgBtn
-                onClick={event => {
-                  event.preventDefault();
-                  removeImg(index);
-                }}
-              ></CloseImgBtn>
-              <UploadImg
-                draggable
-                onDragStart={e => dragStart(e, index)}
-                onDragEnter={e => dragEnter(e, index)}
-                onDragEnd={drop}
-                onDragOver={e => e.preventDefault()}
-                key={index}
-                src={preview}
-                alt="업로드된 이미지"
+      <Main>
+        <StyledContainer>
+          <UploadContainer>
+            <UploadImgWrapper htmlFor="file-input">
+              <UploadImgInput
+                type="file"
+                id="file-input"
+                accept="image/jpeg,image/jpg,image/png,image/gif"
+                multiple
+                onChange={handleUploadImg}
+                ref={fileInputRef}
               />
-            </UploadImgDiv>
-          ))}
-        </UploadContainer>
-        <form>
-          <StyledPost
-            rows="28"
-            placeholder="게시글 입력하기"
-            value={content}
-            onChange={onChangeInput}
-          ></StyledPost>
-        </form>
-      </StyledContainer>
+              <SocialSVG id="camera-btn" />
+            </UploadImgWrapper>
+            {uploadPreview?.map((preview, index) => (
+              <UploadImgDiv key={index}>
+                <CloseImgBtn
+                  onClick={event => {
+                    event.preventDefault();
+                    removeImg(index);
+                  }}
+                ></CloseImgBtn>
+                <UploadImg
+                  draggable
+                  onDragStart={e => dragStart(e, index)}
+                  onDragEnter={e => dragEnter(e, index)}
+                  onDragEnd={drop}
+                  onDragOver={e => e.preventDefault()}
+                  key={index}
+                  src={preview}
+                  alt="업로드된 이미지"
+                />
+              </UploadImgDiv>
+            ))}
+          </UploadContainer>
+          <form>
+            <StyledPost
+              rows="28"
+              placeholder="게시글 입력하기"
+              value={content}
+              onChange={onChangeInput}
+            ></StyledPost>
+          </form>
+        </StyledContainer>
+      </Main>
     </>
   );
 }

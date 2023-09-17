@@ -12,8 +12,26 @@ import { modalState } from "../../atoms/modalAtom";
 const List = styled.ul`
   background-color: white;
   padding: 57px 24px 69px 24px;
+  @media (min-width: 768px) {
+    max-width: 630px;
+    flex-basis: 600px;
+  }
+  @media (min-width: 1024px) {
+    max-width: 600px;
+  }
 `;
-
+const Main = styled.main`
+  @media (min-width: 768px) {
+    margin-left: auto;
+    width: calc(100vw - var(--nav-medium-width));
+    display: flex;
+  }
+  @media (min-width: 1024px) {
+    margin-left: auto;
+    width: calc(100vw - var(--nav-wide-width));
+    display: flex;
+  }
+`;
 export default function PostHome() {
   const [modal, setModal] = useRecoilState(modalState);
   const [loading, setLoading] = useState(true);
@@ -63,7 +81,7 @@ export default function PostHome() {
       {loading ? (
         <Loading />
       ) : myFeed.length > 1 ? (
-        <main>
+        <Main>
           <List>
             {myFeed.map(item => (
               <li key={item.id}>
@@ -79,7 +97,7 @@ export default function PostHome() {
           </List>
           <div ref={observer} />
           {modal.show && <Modal type="report" />}
-        </main>
+        </Main>
       ) : (
         <EmptyHome />
       )}

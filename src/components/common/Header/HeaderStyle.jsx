@@ -7,6 +7,8 @@ const HeaderWrap = styled.header`
   z-index: 999;
   width: 100%;
   max-width: 390px;
+  @media (min-width: 768px) {
+  }
 `;
 
 const HeaderLayoutSection = styled.section`

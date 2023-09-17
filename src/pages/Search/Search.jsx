@@ -19,7 +19,6 @@ export default function Search() {
     <>
       <h1 className="a11y-hidden">검색 페이지</h1>
       <Header
-        type="search"
         searchKeyword={searchKeyword}
         handleSearchKeyword={handleSearchKeyword}
       />

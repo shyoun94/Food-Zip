@@ -33,7 +33,7 @@ export default function Profile({ type }) {
 
   return (
     <>
-      <Header type="profile" />
+      <Header />
       <main>
         <ProfileInformation type={type} />
         <RecommendList cardOpen={cardOpen} cardClosed={cardClosed} />

@@ -1,13 +1,16 @@
 import styled from "styled-components";
 
 const CarouselWrapper = styled.div`
-  width: 342px;
+  width: 100%;
   height: 228px;
   border-radius: 8px;
   position: relative;
   display: flex;
   flex-direction: column;
   margin: 0 auto 22px auto;
+  @media (min-width: 768px) {
+    height: 520px;
+  }
 `;
 
 const CarouselImages = styled.div`
@@ -16,6 +19,9 @@ const CarouselImages = styled.div`
     height: 228px;
     border-radius: 8px;
     object-fit: cover;
+    @media (min-width: 768px) {
+      height: 480px;
+    }
   }
   img.inactive {
     display: none;

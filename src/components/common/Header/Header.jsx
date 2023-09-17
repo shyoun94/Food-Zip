@@ -12,7 +12,7 @@ import {
   SocialSvg,
 } from "./HeaderStyle";
 import Button from "../Button/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import RandomRecommend from "../../RandomRecommend/RandomRecommend";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import {
@@ -23,7 +23,6 @@ import sprite from "../../../assets/images/SpriteIcon.svg";
 import { modalState } from "../../../atoms/modalAtom";
 
 export default function Header({
-  type,
   uploadHandler,
   searchKeyword,
   handleSearchKeyword,
@@ -47,6 +46,8 @@ export default function Header({
   function handleClick() {
     navigate("/search");
   }
+  const location = useLocation();
+  const URL = location.pathname;
 
   const [randomShow, setRandomShow] = useState(false);
   const [isRandomOpening, setIsRandomOpening] = useState(false);
@@ -112,7 +113,23 @@ export default function Header({
       </HeaderRightBtn>
     );
   }
+  let type = "default"; // 기본값으로 default를 설정
 
+  if (URL === "/home") {
+    type = "home";
+  } else if (URL === "/search") {
+    type = "search";
+  } else if (URL === "/myprofile") {
+    type = "profile";
+  } else if (URL === "/map") {
+    type = "map";
+  } else if (URL === "/followers") {
+    type = "followers";
+  } else if (URL === "/followings") {
+    type = "followings";
+  } else if (URL === "/makepost") {
+    type = "upload";
+  }
   const UI = {
     home: (
       <HeaderLayoutSection>
